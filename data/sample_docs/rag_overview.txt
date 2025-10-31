@@ -1,0 +1,54 @@
+# Sample Document: Retrieval-Augmented Generation (RAG)
+
+Retrieval-Augmented Generation (RAG) is a technique that combines information retrieval with text generation to produce more accurate and grounded responses from language models.
+
+## How RAG Works
+
+1. **Document Indexing**: Documents are processed and stored in a vector database with embeddings
+2. **Query Processing**: User queries are converted into embeddings
+3. **Retrieval**: Relevant documents are retrieved based on similarity
+4. **Generation**: The language model generates responses using the retrieved context
+
+## Benefits
+
+- **Factual Accuracy**: Responses are grounded in retrieved documents
+- **Up-to-date Information**: Can access current documents without retraining
+- **Reduced Hallucination**: Less likely to generate false information
+- **Transparency**: Retrieved sources can be cited
+
+## Components
+
+### Vector Databases
+Vector databases store document embeddings for efficient similarity search. Popular options include:
+- ChromaDB
+- Pinecone
+- Weaviate
+- FAISS
+
+### Embedding Models
+Embedding models convert text into dense vector representations:
+- Sentence-BERT
+- OpenAI Embeddings
+- Cohere Embeddings
+
+### Language Models
+The generation component uses large language models:
+- GPT-4
+- Claude
+- Llama 2
+- Qwen
+
+## Best Practices
+
+1. Chunk documents appropriately (200-500 tokens)
+2. Use metadata for filtering
+3. Implement hybrid search (keyword + semantic)
+4. Cache frequent queries
+5. Monitor and evaluate retrieval quality
+
+## Challenges
+
+- Balancing retrieval quantity vs quality
+- Managing outdated information
+- Computational costs
+- Context window limitations

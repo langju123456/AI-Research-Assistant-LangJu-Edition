@@ -1,0 +1,26 @@
+# Sample Document: Introduction to AI
+
+Artificial Intelligence (AI) is the simulation of human intelligence in machines that are programmed to think and learn like humans. The field of AI research has been highly successful in developing effective techniques for solving a wide range of problems, from game playing to medical diagnosis.
+
+## Key Concepts
+
+### Machine Learning
+Machine learning is a subset of AI that provides systems the ability to automatically learn and improve from experience without being explicitly programmed. It focuses on the development of computer programs that can access data and use it to learn for themselves.
+
+### Deep Learning
+Deep learning is part of a broader family of machine learning methods based on artificial neural networks with representation learning. Learning can be supervised, semi-supervised or unsupervised.
+
+### Natural Language Processing
+Natural language processing (NLP) is a branch of AI that helps computers understand, interpret and manipulate human language. NLP draws from many disciplines, including computer science and computational linguistics.
+
+## Applications
+
+AI is being applied in various domains:
+- Healthcare: Diagnosis, treatment recommendations, drug discovery
+- Finance: Fraud detection, algorithmic trading, risk assessment
+- Transportation: Autonomous vehicles, route optimization
+- Customer Service: Chatbots, virtual assistants, sentiment analysis
+
+## Future Directions
+
+The future of AI includes advances in general AI, improved natural language understanding, and better integration with human workflows. Ethical considerations and responsible AI development are becoming increasingly important.
