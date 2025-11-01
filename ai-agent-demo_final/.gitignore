@@ -1,0 +1,25 @@
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.swp
+*.swo
+
+# Virtual env
+.venv/
+
+# OS files
+.DS_Store
+
+# Logs
+*.log
+app/logs/
+
+# Data & embeddings
+data/embeddings/
+
+# Secrets
+.env
+.env.*

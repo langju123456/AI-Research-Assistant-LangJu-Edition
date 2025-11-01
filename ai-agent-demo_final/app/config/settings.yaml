@@ -1,0 +1,24 @@
+
+# Select backend: openai | ollama
+backend: openai
+
+# Model IDs
+models:
+  openai_chat: gpt-4o-mini
+  ollama_chat: qwen2:7b
+
+# Server endpoints
+endpoints:
+  openai_base: https://api.openai.com/v1
+  ollama_base: http://127.0.0.1:11434
+
+# RAG settings
+rag:
+  vector_db: chroma
+  top_k: 4
+  collection_name: langju_docs
+
+# App
+app:
+  debug: true
+  log_file: app/logs/agent_run.log
