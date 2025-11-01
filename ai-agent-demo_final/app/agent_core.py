@@ -58,3 +58,4 @@ def get_response(query: str, backend: str = "openai") -> str:
 def load_document_into_knowledgebase(file_obj) -> None:
     vstore = get_vstore()
     vstore.add_file(file_obj)
+    ##
