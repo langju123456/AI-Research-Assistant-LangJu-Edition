@@ -1,0 +1,109 @@
+name: CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch: {}
+
+jobs:
+  checks:
+    name: Static checks
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: 3.11
+
+      - name: Install tooling
+        run: |
+          python -m pip install --upgrade pip
+          pip install flake8
+
+      - name: Run flake8 and annotate via reviewdog
+        uses: reviewdog/action-flake8@v1
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          reporter: github-pr-review
+          filter_mode: file
+          flake8_flags: --max-line-length=100
+          # Fail the job when flake8 reports issues
+          fail_on_error: true
+
+      - name: Check UTF-8 encodings
+        run: |
+          python scripts/check_utf8.py
+
+  test:
+    name: Unit tests (lightweight)
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [3.11]
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: Cache pip
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/pip
+          key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
+          restore-keys: |
+            ${{ runner.os }}-pip-
+
+      - name: Install minimal test dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install pytest python-dotenv pydantic requests
+
+      - name: Run tests
+        run: |
+          python -m pytest -q
+
+  integration:
+    name: Integration tests (conda/faiss)
+    runs-on: ubuntu-latest
+    if: github.event_name == 'workflow_dispatch' || github.ref == 'refs/heads/main'
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Miniconda (mamba)
+        uses: conda-incubator/setup-miniconda@v2
+        with:
+          python-version: 3.11
+          auto-update-conda: true
+          use-mamba: true
+
+      - name: Cache conda packages
+        uses: actions/cache@v4
+        with:
+          # Cache conda package cache to speed up environment creation
+          path: |
+            ~/.conda/pkgs
+            ~/.cache/pip
+          key: ${{ runner.os }}-conda-${{ hashFiles('**/requirements.txt') }}
+          restore-keys: |
+            ${{ runner.os }}-conda-
+
+      - name: Create integration env with faiss
+        run: |
+          mamba create -n integration -y -c conda-forge python=3.11 faiss-cpu
+
+      - name: Install remaining dependencies into integration env
+        run: |
+          conda run -n integration python -m pip install --upgrade pip
+          conda run -n integration python -m pip install -r requirements.txt
+
+      - name: Run integration tests
+        run: |
+          conda run -n integration python -m pytest -q
