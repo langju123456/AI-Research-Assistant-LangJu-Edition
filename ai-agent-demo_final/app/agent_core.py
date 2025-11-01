@@ -3,8 +3,15 @@ from .models.model_wrapper import ModelWrapper
 from .memory.short_term import ShortTermMemory
 from .memory.vector_store import VectorStore, VectorStoreConfig
 from .tools.web_search import web_search_tool
+# app/agent_core.py
+from pathlib import Path
+import yaml
 
-with open("app/config/settings.yaml", "r", encoding="utf-8") as f:
+# 以当前文件为基准，定位 settings.yaml
+BASE_DIR = Path(__file__).resolve().parent            # .../ai-agent-demo_final/app
+SETTINGS_PATH = BASE_DIR / "config" / "settings.yaml" # .../ai-agent-demo_final/app/config/settings.yaml
+
+with open(SETTINGS_PATH, "r", encoding="utf-8") as f:
     CFG = yaml.safe_load(f)
 
 memory = ShortTermMemory()
