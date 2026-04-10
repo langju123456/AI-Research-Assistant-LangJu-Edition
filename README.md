@@ -1,4 +1,4 @@
-A **local + cloud hybrid AI Agent** powered by **Qwen2 (Ollama)** & **GPT (OpenAI)**.  [**AI-Research-Assistant-LangJu-Edition**](https://github.com/langju123456/AI-Research-Assistant-LangJu-Edition/blob/main/PRODUCT_OVERVIEW) 
+A **local + cloud hybrid AI Agent** powered by **Qwen2 (Ollama)** & **GPT (OpenAI)**.  [**Product-Review**](https://github.com/langju123456/AI-Research-Assistant-LangJu-Edition/blob/main/PRODUCT_OVERVIEW) 
 Includes **RAG**, **memory**, **tool use**, **Streamlit UI**, **FastAPI REST API**, and **Docker** support.
 
 ---
