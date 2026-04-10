@@ -90,6 +90,7 @@ Actively evolving — expanding into broader AI product use cases and real-world
 ## 🌐 Links
 
 GitHub: https://github.com/langju123456/AI-Research-Assistant-LangJu-Edition
+
 Portfolio: https://langhorizontech.com/
 ---
 
