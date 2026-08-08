@@ -1,5 +1,11 @@
 from io import BytesIO
+
+import pytest
+
 from app.agent_core import load_document_into_knowledgebase, get_response
+
+
+pytestmark = pytest.mark.integration
 
 
 def test_ingest_and_ask():
