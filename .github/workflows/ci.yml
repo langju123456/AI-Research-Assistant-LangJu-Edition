@@ -24,7 +24,12 @@ jobs:
           python -m pip install --upgrade pip
           pip install flake8
 
-      - name: Run flake8 and annotate via reviewdog
+      - name: Run blocking flake8 checks
+        run: |
+          flake8 --max-line-length=100 .
+
+      - name: Annotate flake8 findings via reviewdog
+        if: always() && github.event_name == 'pull_request'
         uses: reviewdog/action-flake8@b65981e158319f08cb7d0132f28bc0081e110adc # v3.15.2
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
